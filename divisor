@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    int num1, num2;
+    int quociente_inteiro, resto;
+    double quociente_racional;
+
+    // Leitura dos dois numeros inteiros
+    printf("Digite o primeiro numero inteiro: ");
+    scanf("%d", &num1);
+
+    printf("Digite o segundo numero inteiro: ");
+    scanf("%d", &num2);
+
+    // Validação para evitar divisao por zero
+    if (num2 == 0) {
+        printf("\nErro: Divisao por zero nao e permitida.\n");
+        return 1;
+    }
+
+    // Calculos
+    quociente_inteiro = num1 / num2;
+    resto = num1 % num2;
+    quociente_racional = (double) num1 / num2; // Typecast para double
+
+    // Exibicao dos resultados
+    printf("\n--- Resultados ---\n");
+    printf("Quociente inteiro: %d\n", quociente_inteiro);
+    printf("Resto da divisao: %d\n", resto);
+    printf("Quociente racional: %.2f\n", quociente_racional);
+
+    return 0;
+}
