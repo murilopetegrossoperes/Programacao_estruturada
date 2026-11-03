@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+int main() {
+    // Declaração dos tamanhos dos vetores N e M
+    int N, M;
+
+    printf("Digite o tamanho do vetor A (N): ");
+    scanf("%d", &N);
+    printf("Digite o tamanho do vetor B (M): ");
+    scanf("%d", &M);
+
+    int A[N], B[M], FUS[N + M];
+
+    // Leitura dos elementos do vetor A (devem ser inseridos em ordem crescente)
+    printf("\n--- Preenchendo o Vetor A (%d elementos ordenados) ---\n", N);
+    for (int i = 0; i < N; i++) {
+        printf("A[%d]: ", i);
+        scanf("%d", &A[i]);
+    }
+
+    // Leitura dos elementos do vetor B (devem ser inseridos em ordem crescente)
+    printf("\n--- Preenchendo o Vetor B (%d elementos ordenados) ---\n", M);
+    for (int i = 0; i < M; i++) {
+        printf("B[%d]: ", i);
+        scanf("%d", &B[i]);
+    }
+
+    // Inicialização dos três índices: IA, IB e IFUS
+    int IA = 0;   // Índice para percorrer o vetor A
+    int IB = 0;   // Índice para percorrer o vetor B
+    int IFUS = 0; // Índice para percorrer o vetor FUS
+
+    // 1. Comparar A[IA] e B[IB] enquanto nenhum dos vetores estiver esgotado
+    while (IA < N && IB < M) {
+        if (A[IA] <= B[IB]) {
+            FUS[IFUS] = A[IA];
+            IA++;
+        } else {
+            FUS[IFUS] = B[IB];
+            IB++;
+        }
+        IFUS++;
+    }
+
+    // 2. Se o vetor B esgotou primeiro, copia os elementos restantes de A
+    while (IA < N) {
+        FUS[IFUS] = A[IA];
+        IA++;
+        IFUS++;
+    }
+
+    // 3. Se o vetor A esgotou primeiro, copia os elementos restantes de B
+    while (IB < M) {
+        FUS[IFUS] = B[IB];
+        IB++;
+        IFUS++;
+    }
+
+    // Impressão do resultado final
+    printf("\n--- Vetor FUS (Resultado da Fusao Ordenada) ---\n");
+    for (int i = 0; i < N + M; i++) {
+        printf("%d ", FUS[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
